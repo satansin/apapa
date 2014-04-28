@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Apapa</string>
+    <string name="title_conversation">聊天</string>
+    <string name="title_contact">通讯录</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="icon_description">用户头像</string>
+    <string name="title_activity_chat">Chatting</string>
+    <string name="chatting_edit_text_hint"></string>
+    <string name="chatting_edit_button_text">发送</string>
+
+</resources>
