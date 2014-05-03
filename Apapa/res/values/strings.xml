@@ -10,5 +10,8 @@
     <string name="title_activity_chat">Chatting</string>
     <string name="chatting_edit_text_hint"></string>
     <string name="chatting_edit_button_text">发送</string>
+    <string name="title_activity_find_friend">FindFriendActivity</string>
+    <string name="search_friend_edit_text_hint">输入用户名</string>
+    <string name="search_friend_edit_button_text">查找</string>
 
 </resources>

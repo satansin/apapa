@@ -106,8 +106,16 @@ public class MainActivity extends ActionBarActivity implements
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
+		} else if (id == R.id.action_search) {
+			startSearch();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void startSearch() {
+		Intent searchIntent = new Intent(this, FindFriendActivity.class);
+		startActivity(searchIntent);
 	}
 
 	@Override

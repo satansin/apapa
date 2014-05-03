@@ -109,7 +109,7 @@ public class ChatActivity extends ActionBarActivity {
 	}
 	
 	public void appendText(View view) {
-		final EditText editText = (EditText) findViewById(R.id.chattingEditText);
+		EditText editText = (EditText) findViewById(R.id.chattingEditText);
 		String text = editText.getText().toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("icon", R.drawable.test_icon_3);
