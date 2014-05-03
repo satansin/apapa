@@ -1,10 +1,16 @@
 package com.satansin.android.apapa;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -103,7 +109,7 @@ public class ChatActivity extends ActionBarActivity {
 	}
 	
 	public void appendText(View view) {
-		EditText editText = (EditText) findViewById(R.id.chattingEditText);
+		final EditText editText = (EditText) findViewById(R.id.chattingEditText);
 		String text = editText.getText().toString();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("icon", R.drawable.test_icon_3);
@@ -114,6 +120,57 @@ public class ChatActivity extends ActionBarActivity {
 		editText.setText("");
 		ListView listView = (ListView) findViewById(R.id.chattingListView);
 		listView.setSelection(listView.getBottom());
+		
+		new MyTask().execute();
+		
+//		new Thread() {
+//			@Override
+//			public void run() {
+//				try {
+//					System.out.println("thread begin");
+//					Socket socket = new Socket("192.110.165.234", 80);
+//					BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//					final String advice = reader.readLine();
+//					editText.post(new Runnable() {
+//						@Override
+//						public void run() {
+//							editText.setText(advice);
+//						}
+//					});
+//					reader.close();
+//					socket.close();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}.start();
+	}
+	
+	private class MyTask extends AsyncTask<Void, Void, String> {
+
+		@Override
+		protected String doInBackground(Void... params) {
+			Socket socket;
+			String advice = "";
+			try {
+				socket = new Socket("192.110.165.234", 80);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				advice = reader.readLine();
+				reader.close();
+				socket.close();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return advice;
+		}
+		
+		@Override  
+	    protected void onPostExecute(String result) {
+			final EditText editText = (EditText) findViewById(R.id.chattingEditText);
+			editText.setText(result);
+	    }
 	}
 
 }
