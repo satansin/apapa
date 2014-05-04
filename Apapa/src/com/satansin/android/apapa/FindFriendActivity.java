@@ -5,12 +5,16 @@ import java.util.HashMap;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -71,7 +75,7 @@ public class FindFriendActivity extends ActionBarActivity {
 		
 		ListView listView = (ListView) findViewById(R.id.searchResultListView);
 
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		final ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		HashMap<String, Object> map;
 
 		map = new HashMap<String, Object>();
@@ -88,6 +92,18 @@ public class FindFriendActivity extends ActionBarActivity {
 				R.layout.search_item, new String[] { "icon", "username" },
 				new int[] { R.id.userIcon, R.id.usernameText });
 		listView.setAdapter(adapter);
+		
+		final Activity parentActivity = this;
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				String personName = (String) list.get(position).get("username");
+				Intent personDetailIntent = new Intent(parentActivity, PersonActivity.class);
+				personDetailIntent.putExtra(MainActivity.PERSON_NAME, personName);
+				startActivity(personDetailIntent);
+			}
+		});
 	}
 
 }

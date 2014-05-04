@@ -13,5 +13,7 @@
     <string name="title_activity_find_friend">FindFriendActivity</string>
     <string name="search_friend_edit_text_hint">输入用户名</string>
     <string name="search_friend_edit_button_text">查找</string>
+    <string name="title_activity_person">PersonActivity</string>
+    <string name="detaiStartChattingText">发起群聊</string>
 
 </resources>

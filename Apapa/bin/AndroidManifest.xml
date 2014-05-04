@@ -41,6 +41,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.satansin.android.apapa.MainActivity" />
         </activity>
+        <activity
+            android:name="com.satansin.android.apapa.PersonActivity"
+            android:label="@string/title_activity_person"
+            android:parentActivityName="com.satansin.android.apapa.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.satansin.android.apapa.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

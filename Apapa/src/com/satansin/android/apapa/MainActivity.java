@@ -30,6 +30,7 @@ public class MainActivity extends ActionBarActivity implements
 		ActionBar.TabListener {
 	
 	public static final String CONVERSATION_ID = "com.satansin.android.apapa.CONVERSATION_ID";
+	public static final String PERSON_NAME = "com.satansin.android.apapa.PERSON_NAME";
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -252,6 +253,17 @@ public class MainActivity extends ActionBarActivity implements
 					android.R.layout.simple_expandable_list_item_1, getArguments().getStringArrayList(
 							"value_list"));
 			listView.setAdapter(adapter);
+			
+			listView.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					String personName = (String) getArguments().getStringArrayList("value_list").get(position);
+					Intent personDetailIntent = new Intent(getActivity(), PersonActivity.class);
+					personDetailIntent.putExtra(PERSON_NAME, personName);
+					startActivity(personDetailIntent);
+				}
+			});
 			return rootView;
 		}
 
